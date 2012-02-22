@@ -29,9 +29,9 @@
     <dependency>
         <groupId>org.agmip.core</groupId>
         <artifactId>agmip-core</artifactId>
-        <version>0.2</version>
+        <version>0.3</version>
         <scope>system</scope>
-        <systemPath>${project.basedir}/../agmip-core/target/agmip-core-0.2.jar</systemPath>
+        <systemPath>${project.basedir}/../agmip-core/target/agmip-core-0.3.jar</systemPath>
     </dependency>
   </dependencies>
 </project>

@@ -12,24 +12,32 @@ import org.agmip.core.types.*;
 import org.agmip.core.types.weather.WeatherData;
 
 public class JSONAdapter {
-  public ObjectMapper mapper = new ObjectMapper();
+  private ObjectMapper mapper; 
+  private AdvancedHashMap data;
   
-  public JSONAdapter(){};
+  public JSONAdapter(){
+    data = new AdvancedHashMap();
+    mapper = new ObjectMapper();
+
+  };
   
-  public AdvancedHashMap<String,Object> fromJSON(String json) throws IOException {
-    Map<String, Object> d = mapper.readValue(json, Map.class);
-    AdvancedHashMap<String,Object> data = new AdvancedHashMap<String,Object>();
-    for(String key: d.keySet()) {
-      Map d2 = (Map) d.get(key);
-      for(Object k: d2.keySet()) {
-        data.put((String)k, d2.get(k));
-      }
-    }
+  public AdvancedHashMap fromJSON(String json) throws IOException {
+    Map d = mapper.readValue(json, Map.class);
+    flatten(d);
     return data;
   }
+
+  private void flatten(Map<String,Object> source) {
+    for (Map.Entry<String,Object> e : source.entrySet()) {
+      Object value = e.getValue();
+      if(value instanceof Map)
+        flatten((Map<String,Object>)value);
+      data.put(e.getKey(), value);
+    }
+  }
   
-  public AdvancedHashMap<String,Object> exportRecord(Map r) {
-    AdvancedHashMap<String,Object> d = new AdvancedHashMap<String,Object>();
+  public AdvancedHashMap exportRecord(Map r) {
+    AdvancedHashMap d = new AdvancedHashMap();
     d.put(r);
     return d;
   }

@@ -4,7 +4,7 @@
 
   <groupId>org.agmip.util</groupId>
   <artifactId>simple-json-handler</artifactId>
-  <version>1.0</version>
+  <version>1.1</version>
   <packaging>jar</packaging>
 
   <name>simple-json-handler</name>
@@ -29,9 +29,9 @@
     <dependency>
         <groupId>org.agmip.core</groupId>
         <artifactId>agmip-core</artifactId>
-        <version>0.2</version>
+        <version>0.4</version>
         <scope>system</scope>
-        <systemPath>${project.basedir}/../agmip-core/target/agmip-core-0.2.jar</systemPath>
+        <systemPath>${project.basedir}/../agmip-core/target/agmip-core-0.4.jar</systemPath>
     </dependency>
   </dependencies>
 </project>
